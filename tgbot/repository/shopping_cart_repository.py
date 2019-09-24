@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
-from tgbot.repository.connect_db import Base
+from tgbot.repository.crud import Base
 
 
 class ShoppingCart(Base):
@@ -10,8 +10,6 @@ class ShoppingCart(Base):
     cart_quantity = Column('cart_quantity', Integer)
     products = relationship('tgbot.repository.product_repository.Product', back_populates='cart_items')
 
-
-    def __init__(self,cart_item, cart_quantity):
+    def __init__(self, cart_item, cart_quantity):
         self.cart_item = cart_item
         self.cart_quantity = cart_quantity
-

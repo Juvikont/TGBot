@@ -1,4 +1,4 @@
 .idea/
 venv/
 *.pyc
-*.sqlite3
+config.py

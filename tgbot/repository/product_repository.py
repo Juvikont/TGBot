@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Numeric
 from sqlalchemy.orm import relationship
-from tgbot.repository.connect_db import Base
+from tgbot.repository.crud import Base
 
 
 class Product(Base):
