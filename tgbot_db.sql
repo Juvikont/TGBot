@@ -4,7 +4,7 @@ create schema if not exists tgbot;
 drop table if exists products CASCADE ;
 create table products
 (
-    id                  bigserial primary key unique,
+    id                  bigserial primary key ,
     product_name        varchar(50)  not null,
     product_description varchar(100) not null,
     product_price       decimal(5)   not null,
