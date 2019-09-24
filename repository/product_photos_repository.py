@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, ForeignKey, String, Boolean, Binary
-from tgbot.repository.crud import Base
+from repository.config import Base
 
 
 class ProductPhoto(Base):

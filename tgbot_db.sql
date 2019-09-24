@@ -1,30 +1,30 @@
 drop schema if exists tgbot cascade;
 create schema if not exists tgbot;
 
-drop table if exists products CASCADE ;
+drop table if exists products CASCADE;
 create table products
 (
-    id                  bigserial primary key ,
+    id                  bigserial primary key,
     product_name        varchar(50)  not null,
     product_description varchar(100) not null,
     product_price       decimal(5)   not null,
     product_quantity    integer      not null,
-    product_type        varchar(50)   not null,
-    product_sex         varchar(6)     not null
+    product_type        varchar(10)  not null,
+    product_sex         varchar(6)   not null
 );
-drop table if exists product_photos CASCADE ;
+drop table if exists product_photos CASCADE;
 create table product_photos
 (
     photo_id      bigserial primary key,
     photo_name    varchar    not null,
     photo_ext     varchar(4) not null,
-    photo_content oid      not null,
+    photo_content oid        not null,
     is_main       boolean default false,
-    product_id    integer    not null references products(id)
+    product_id    integer    not null references products (id)
         on delete cascade
         on update cascade
 );
-drop table if exists shopping_cart CASCADE ;
+drop table if exists shopping_cart CASCADE;
 create table shopping_cart
 (
     cart_id       bigserial primary key,
@@ -34,14 +34,14 @@ create table shopping_cart
     cart_quantity integer not null
 );
 
-drop table if exists payment CASCADE ;
+drop table if exists payment CASCADE;
 create table payment
 (
     payment_id        bigserial primary key,
     payment_status    bool default false,
     payment_amount    decimal not null,
     payment_check_sum varchar not null,
-    cart_payment integer references shopping_cart (cart_id)
+    cart_payment      integer references shopping_cart (cart_id)
         on delete set null
         on update cascade
 
