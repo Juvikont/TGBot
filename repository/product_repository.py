@@ -1,7 +1,6 @@
-from sqlalchemy import Column, Integer, String, BigInteger,DECIMAL
-from sqlalchemy.orm import relationship
-from repository.config import Base
-
+from sqlalchemy import Column, Integer, String, BigInteger, DECIMAL
+from sqlalchemy.orm import relationship, sessionmaker
+from repository.config import Base, Session
 
 
 class Product(Base):
@@ -25,5 +24,24 @@ class Product(Base):
         self.product_type = product_type
         self.product_sex = product_sex
 
+    def __repr__(self):
+        return "<Product(id='{}', product_name='{}', product_description={}, product_price={},product_quantity={}," \
+               "product_type={},product_sex={},photos={}>\n" \
+            .format(self.id, self.product_name, self.product_description, self.product_price, self.product_quantity,
+                    self.product_type, self.product_sex, self.photos)
 
 
+def add_product(product):
+    s = Session()
+    s.add(product)
+    s.commit()
+
+
+def get_all_products():
+    s = Session()
+    return s.query(Product).all()
+
+
+def get_product_by_id(id):
+    s = Session()
+    return s.query(Product).filter(Product.id == id).first()
