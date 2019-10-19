@@ -17,9 +17,7 @@ class BittrexRequestError(BittrexError):
 
 
 class BittrexClient(object):
-    """ Клиент к API Bittrex
-        Документация: https://bittrex.github.io/api/v1-1
-    """
+
     def __init__(self):
         self.base_url = "https://api.bittrex.com/api/v1.1"
 

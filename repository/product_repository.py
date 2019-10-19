@@ -45,3 +45,5 @@ def get_all_products():
 def get_product_by_id(id):
     s = Session()
     return s.query(Product).filter(Product.id == id).first()
+
+

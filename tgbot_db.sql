@@ -24,15 +24,6 @@ create table product_photos
         on delete cascade
         on update cascade
 );
-drop table if exists shopping_cart CASCADE;
-create table shopping_cart
-(
-    cart_id       bigserial primary key,
-    cart_item     integer not null references products (id)
-        on delete cascade
-        on update cascade,
-    cart_quantity integer not null
-);
 
 drop table if exists payment CASCADE;
 create table payment
@@ -40,9 +31,6 @@ create table payment
     payment_id        bigserial primary key,
     payment_status    bool default false,
     payment_amount    decimal not null,
-    payment_check_sum varchar not null,
-    cart_payment      integer references shopping_cart (cart_id)
-        on delete set null
-        on update cascade
+    payment_check_sum varchar not null
 
 );

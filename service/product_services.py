@@ -7,6 +7,8 @@ from repository.product_photos_repository import ProductPhoto
 
 
 class Product_Services():
+    # Single responsibility
+
     @staticmethod
     def getproducts():
         return get_all_products()
@@ -14,4 +16,3 @@ class Product_Services():
     @staticmethod
     def getproduct(product):
         return get_product_by_id(product)
-

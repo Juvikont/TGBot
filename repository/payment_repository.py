@@ -9,7 +9,7 @@ class Payment(Base):
     payment_status = Column('payment_status', Boolean, default=False)
     payment_amount = Column('payment_amount', Numeric)
     payment_check_sum = Column('payment_check_sum', String)
-    cart_payment = Column('cart_payment', Integer, ForeignKey('shopping_cart.cart_id', passive_deletes=True))
+    cart_payment = Column('cart_payment', Integer, ForeignKey('shopping_cart.cart_id'))
     products = relationship('repository.shopping_cart_repository.ShoppingCart')
 
     def __init__(self, payment_status, payment_amount, payment_check_sum, cart_payment):
@@ -31,3 +31,4 @@ def get_all_payments():
 def get_payment_status(status):
     s = Session()
     return s.query(Payment).filter(Payment.payment_status == status).first()
+
