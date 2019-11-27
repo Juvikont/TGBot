@@ -28,9 +28,17 @@ create table product_photos
 drop table if exists payment CASCADE;
 create table payment
 (
-    payment_id        bigserial primary key,
-    payment_status    bool default false,
-    payment_amount    decimal not null,
-    payment_check_sum varchar not null
+    payment_id              bigserial primary key,
+    payment_yandex_id       varchar not null,
+    payment_status          varchar not null,
+    payment_amount          decimal not null,
+    payment_currency        varchar not null,
+    payment_idempotency_key varchar not null,
+    payment_date            varchar    not null,
+    payment_product         integer not null references products (id)
+        on delete cascade
+        on update cascade,
+    payment_customer integer not null
+
 
 );

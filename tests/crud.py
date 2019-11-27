@@ -1,7 +1,7 @@
 from service.config import API_TOKEN
 import telebot
 from telebot import types
-from service import product_services as products
+from service import productservices as products
 
 bot = telebot.TeleBot(API_TOKEN)
 

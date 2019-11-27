@@ -32,6 +32,7 @@ class Product(Base):
 
 
 def add_product(product):
+    # Session.Rollback
     s = Session()
     s.add(product)
     s.commit()
@@ -47,3 +48,6 @@ def get_product_by_id(id):
     return s.query(Product).filter(Product.id == id).first()
 
 
+def get_products_by_type(type):
+    s = Session()
+    return s.query(Product).filter(Product.product_type == type).all()

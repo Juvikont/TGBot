@@ -18,5 +18,5 @@ class ProductPhoto(Base):
         self.product_id = product_id
 
     def __repr__(self):
-        return "<Product(photo_id='{}', photo_name='{}', photo_ext={}, photo_content={},is_main={}>\n"\
+        return "<Photo(photo_id='{}', photo_name='{}', photo_ext={}, photo_content={},is_main={}>\n"\
             .format(self.photo_id, self.photo_name, self.photo_ext, self.photo_content, self.is_main)

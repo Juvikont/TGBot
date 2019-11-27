@@ -1,4 +1,4 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup, ChatAction
 
 CALLBACK_BUTTON1_LEFT = 'callback_button1_left'
 CALLBACK_BUTTON2_RIGHT = 'callback_button2_right'
@@ -15,6 +15,8 @@ CALLBACK_BUTTON12_BOOTS = 'callback_button12_boots'
 CALLBACK_BUTTON13_JACKETS = 'callback_button13_jackets'
 CALLBACK_BUTTON14_BUY = 'callback_button14_buy'
 CALLBACK_BUTTON15_MORE_PHOTOS = 'callback_button15_more_photos'
+CALLBACK_BUTTON16_BACK_SHOP = 'callback_button16_back_shop'
+CALLBACK_BUTTON17_CHECK = 'callback_button17_check'
 
 TITLES = {
     CALLBACK_BUTTON1_LEFT: 'Новое сообщение ',
@@ -22,20 +24,23 @@ TITLES = {
     CALLBACK_BUTTON3_MORE: 'Ещё',
     CALLBACK_BUTTON4_BACK: 'Назад',
     CALLBACK_BUTTON5_TIME: 'Время',
-    CALLBACK_BUTTON6_PRICE: 'BTC',
+    CALLBACK_BUTTON6_PRICE: '\U000020BF BTC',
     CALLBACK_BUTTON7_PRICE: 'LTC',
     CALLBACK_BUTTON8_PRICE: 'ETH',
     CALLBACK_BUTTON9_HIDE_KEYBOARD: "Спрять клавиатуру",
-    CALLBACK_BUTTON10_TSHIRTS: 'Майки',
-    CALLBACK_BUTTON11_JEANS: 'Джинсы',
-    CALLBACK_BUTTON12_BOOTS: 'Обувь',
-    CALLBACK_BUTTON13_JACKETS: 'Куртки',
-    CALLBACK_BUTTON14_BUY: 'Купить',
-    CALLBACK_BUTTON15_MORE_PHOTOS: 'Подробнее'
+    CALLBACK_BUTTON10_TSHIRTS: '\U0001F455 Майки',
+    CALLBACK_BUTTON11_JEANS: '\U0001F456 Джинсы',
+    CALLBACK_BUTTON12_BOOTS: '\U0001F97E Обувь',
+    CALLBACK_BUTTON13_JACKETS: '\U0001F9E5 Куртки',
+    CALLBACK_BUTTON14_BUY: '\U0001F9FE Купить',
+    CALLBACK_BUTTON15_MORE_PHOTOS: '\U0001F4CE Подробнее',
+    CALLBACK_BUTTON16_BACK_SHOP: '\U0001F448 Назад',
+    CALLBACK_BUTTON17_CHECK: '\U0001F4DD Проверить оплату'
 }
 
 REPLY_BUTTON1_STORE = '\U0001F6D2 Магазин'
-REPLY_BUTTON1_CURRENCY = '\U0001F4B0 Курсы валют'
+REPLY_BUTTON2_CURRENCY = '\U0001F4B0 Курсы валют'
+REPLY_BUTTON3_PAYMENTS = '\U0001F9FE Мои оплаты'
 
 
 def reply_keyboard():
@@ -43,12 +48,23 @@ def reply_keyboard():
     menu_keyboard = [
         [
             KeyboardButton(text=REPLY_BUTTON1_STORE),
-            KeyboardButton(text=REPLY_BUTTON1_CURRENCY),
+            KeyboardButton(text=REPLY_BUTTON2_CURRENCY),
         ],
+        [
+            KeyboardButton(text=REPLY_BUTTON3_PAYMENTS)
+        ]
 
     ]
 
     return ReplyKeyboardMarkup(menu_keyboard, one_time_keyboard=False, resize_keyboard=True)
+
+
+def check_inline_keyboard():
+    # Дополнительная inline клавиатура- проверка статуса покупки.
+    keyboard = [
+        [InlineKeyboardButton(TITLES[CALLBACK_BUTTON17_CHECK], callback_data=CALLBACK_BUTTON17_CHECK)]
+    ]
+    return InlineKeyboardMarkup(keyboard)
 
 
 def purchase_inline_keyboard():
@@ -59,7 +75,7 @@ def purchase_inline_keyboard():
             InlineKeyboardButton(TITLES[CALLBACK_BUTTON15_MORE_PHOTOS], callback_data=CALLBACK_BUTTON15_MORE_PHOTOS),
         ],
         [
-            InlineKeyboardButton(TITLES[CALLBACK_BUTTON4_BACK], callback_data=CALLBACK_BUTTON4_BACK),
+            InlineKeyboardButton(TITLES[CALLBACK_BUTTON16_BACK_SHOP], callback_data=CALLBACK_BUTTON16_BACK_SHOP),
         ]
     ]
 
@@ -129,3 +145,4 @@ def base_inline_keyboard2():
 
     ]
     return InlineKeyboardMarkup(keyboard)
+
