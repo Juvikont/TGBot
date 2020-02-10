@@ -1,0 +1,1 @@
+Telegram bot made as a final project for TMS Python course
