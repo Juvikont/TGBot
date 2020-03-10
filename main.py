@@ -69,11 +69,12 @@ def sort_by_main(photo):
 def keyboard_callback_handler(bot: Bot, update: Update, context=CallbackContext):
     query = update.callback_query
     data = query.data
-    print(data)
     now = time.ctime()
 
     chat_id = update.effective_message.chat_id
     current_text = update.effective_message.text
+    info = update.effective_message
+    print(info)
     print(chat_id)
 
     if data == CALLBACK_BUTTON1_LEFT:
@@ -382,6 +383,7 @@ def main():
     )
     updater = Updater(
         bot=bot,
+        # use_context=True,
 
     )
 
